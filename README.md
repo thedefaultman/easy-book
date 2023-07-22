@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Hey guys, This is our [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The node Modules were too big to push here.
+
+Run this the command below to install the dependencies.
+You need Node.js and some form of git installed already then create-next-app will take care ofthe rest.
 
 ## Getting Started
 
