@@ -64,13 +64,12 @@ const AuthModal = () => {
       },
     });
 
-    if (data) {
-      toast.success("Account created successfully!");
-    }
-
     if (error) {
       toast.error(error.message);
+      return;
     }
+
+    toast.success("Account created successfully!");
   };
 
   return (
