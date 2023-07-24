@@ -51,6 +51,21 @@ const AuthModal = () => {
   };
 
   const handleSignUp = async () => {
+    // add validation for all fields
+    if (
+      !doctor ||
+      !patient ||
+      !user_id ||
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      (!patient && !doctor)
+    ) {
+      toast.error("Please fill out all fields");
+      return;
+    }
+
     const { data, error } = await supabaseClient.auth.signUp({
       email: email,
       password: password,
@@ -81,136 +96,142 @@ const AuthModal = () => {
         if (isOpen) close();
       }}
     >
-      <div className={`flex flex-col ${login && "hidden"}`}>
-        <label htmlFor="firstName">Name</label>
-        <div className="flex justify-between items-center gap-x-3">
-          <input
-            name="first"
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-          />
+      <form action="">
+        {" "}
+        <div className={`flex flex-col ${login && "hidden"}`}>
+          <label htmlFor="firstName">Name</label>
+          <div className="flex justify-between items-center gap-x-3">
+            <input
+              name="first"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+              required
+            />
 
+            <input
+              name="last"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex flex-col mt-2">
+          <label htmlFor="email">Email Address</label>
           <input
-            name="last"
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            name="email"
+            type="email"
+            placeholder="E-mail"
             className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
-      </div>
-
-      <div className="flex flex-col mt-2">
-        <label htmlFor="email">Email Address</label>
-        <input
-          name="email"
-          type="email"
-          placeholder="E-mail"
-          className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
-      <div className="flex flex-col mt-2">
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-
-      <div
-        className={`flex justify-start items-center gap-x-2 mt-2 ${
-          login && "hidden"
-        }`}
-      >
-        <input
-          type="checkbox"
-          name="doctor"
-          checked={doctor}
-          onChange={() => {
-            setDoctor(!doctor);
-            setPatient(false);
-          }}
-        />
-        <label htmlFor="doctor">Doctor</label>
-        <input
-          type="checkbox"
-          name="patient"
-          checked={patient}
-          onChange={() => {
-            setPatient(!patient);
-            setDoctor(false);
-          }}
-        />
-        <label htmlFor="patient">Patient</label>
-      </div>
-
-      <div className={`flex flex-col mt-2 ${!patient && !doctor && "hidden"}`}>
-        <label htmlFor="id">
-          {"Please Enter Your 10-Digit "}
-          {patient ? "Personal Health Number" : "Doctor's License"}
-        </label>
-        <input
-          type="text"
-          name="id"
-          placeholder={patient ? "PHN" : "License"}
-          className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-          maxLength={10}
-          value={user_id}
-          onChange={(e) => setUser_id(e.target.value)}
-        />
-      </div>
-
-      <div
-        className={`flex justify-between items-center mt-2 ${
-          !login && "hidden"
-        }`}
-      >
-        <div className="flex gap-x-2">
-          <input type="checkbox" name="remember" />
-          <label htmlFor="remember">Remember me</label>
+        <div className="flex flex-col mt-2">
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+          />
         </div>
+        <div
+          className={`flex justify-start items-center gap-x-2 mt-2 ${
+            login && "hidden"
+          }`}
+        >
+          <input
+            type="checkbox"
+            name="doctor"
+            checked={doctor}
+            onChange={() => {
+              setDoctor(!doctor);
+              setPatient(false);
+            }}
+            required
+          />
+          <label htmlFor="doctor">Doctor</label>
+          <input
+            type="checkbox"
+            name="patient"
+            checked={patient}
+            onChange={() => {
+              setPatient(!patient);
+              setDoctor(false);
+            }}
+            required
+          />
+          <label htmlFor="patient">Patient</label>
+        </div>
+        <div
+          className={`flex flex-col mt-2 ${!patient && !doctor && "hidden"}`}
+        >
+          <label htmlFor="id">
+            {"Please Enter Your 10-Digit "}
+            {patient ? "Personal Health Number" : "Doctor's License"}
+          </label>
+          <input
+            type="text"
+            name="id"
+            placeholder={patient ? "PHN" : "License"}
+            className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+            maxLength={10}
+            value={user_id}
+            onChange={(e) => setUser_id(e.target.value)}
+            required
+          />
+        </div>
+        <div
+          className={`flex justify-between items-center mt-2 ${
+            !login && "hidden"
+          }`}
+        >
+          <div className="flex gap-x-2">
+            <input type="checkbox" name="remember" required />
+            <label htmlFor="remember">Remember me</label>
+          </div>
 
-        <button className="text-blue text-sm">Forgot password</button>
-      </div>
-
-      <button
-        className="bg-blue text-white px-2 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue w-full mt-4"
-        onClick={() => {
-          login ? handleLogin() : handleSignUp();
-        }}
-      >
-        {login ? "Login" : "Sign Up"}
-      </button>
-
-      <div className="flex justify-center items-center mt-4">
-        <p className="text-black">{"Don't have an account?"}</p>
+          <button className="text-blue text-sm">Forgot password</button>
+        </div>
         <button
-          className="text-blue text-sm ml-2"
+          className="bg-blue text-white px-2 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue w-full mt-4"
           onClick={() => {
-            setLogin(!login);
-            setUser_id("");
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setPassword("");
-            setDoctor(false);
-            setPatient(false);
+            login ? handleLogin() : handleSignUp();
           }}
         >
-          {login ? "Sign Up" : "Login"}
+          {login ? "Login" : "Sign Up"}
         </button>
-      </div>
+        <div className="flex justify-center items-center mt-4">
+          <p className="text-black">{"Don't have an account?"}</p>
+          <button
+            className="text-blue text-sm ml-2"
+            onClick={() => {
+              setLogin(!login);
+              setUser_id("");
+              setFirstName("");
+              setLastName("");
+              setEmail("");
+              setPassword("");
+              setDoctor(false);
+              setPatient(false);
+            }}
+          >
+            {login ? "Sign Up" : "Login"}
+          </button>
+        </div>
+      </form>
     </Modal>
   );
 };
