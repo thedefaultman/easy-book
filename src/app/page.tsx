@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Reviews from "@/components/Reviews";
+import Testimonials from "@/components/Testimonials";
 
 import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <Reviews />
         <About />
+        <Testimonials />
       </main>
       <Footer />
     </>
