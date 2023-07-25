@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Reviews from "@/components/Reviews";
@@ -9,6 +10,7 @@ export default function Home() {
       <main className="relative w-full min-h-screen py-24 mx-auto max-w-7xl overflow-hidden px-6 sm:px-16">
         <Hero />
         <Reviews />
+        <About />
       </main>
     </>
   );
