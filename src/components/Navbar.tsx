@@ -12,13 +12,13 @@ const Navbar = () => {
       {
         label: "Login",
         className:
-          "bg-white border border-blue text-blue px-2 py-1 rounded-sm hover:bg-blue hover:text-white hover:border hover:border-white",
+          "bg-white border border-blue text-blue px-4 py-1 rounded-sm hover:bg-blue hover:text-white hover:border hover:border-white",
         onClick: open,
       },
       {
         label: "Signup",
         className:
-          "bg-blue text-white px-2 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue",
+          "bg-blue text-white px-4 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue",
         onClick: open,
       },
     ],
@@ -30,23 +30,23 @@ const Navbar = () => {
       <ul className="flex justify-between items-center gap-x-2">
         <li>
           <Link href="/">
-            <p className="text-black">Home</p>
+            <p className="text-black font-medium">Home</p>
           </Link>
         </li>
         <li>
           <Link href="/about">
-            <p className="text-black">About</p>
+            <p className="text-black font-medium">About</p>
           </Link>
         </li>
         <li>
           <Link href="/contact">
-            <p className="text-black">Contact</p>
+            <p className="text-black font-medium">Contact</p>
           </Link>
         </li>
       </ul>
 
       <div className="flex items-center mr-7">
-        <h1 className="text-neutral-500">Landing page</h1>
+        <h1 className="text-neutral-900 font-black">EASY BOOK</h1>
       </div>
 
       <ul className="flex gap-x-2">
