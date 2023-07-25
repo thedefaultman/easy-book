@@ -26,7 +26,7 @@ const About = () => {
         <Image src={"/About.png"} alt="About" width={500} height={500} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
         <AboutCard
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
           Icon={BsCalendar4}
