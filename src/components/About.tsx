@@ -21,7 +21,10 @@ const AboutCard: React.FC<AboutCardProps> = ({ description, Icon }) => {
 
 const About = () => {
   return (
-    <div className="flex justify-between items-center w-full h-full mt-40 max-w-7xl">
+    <section
+      className="flex justify-between items-center w-full h-full mt-40 max-w-7xl"
+      id="about"
+    >
       <div className="w-full h-full justify-center items-center rounded hidden lg:flex">
         <Image src={"/About.png"} alt="About" width={500} height={500} />
       </div>
@@ -44,7 +47,7 @@ const About = () => {
           Icon={AiOutlineCar}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

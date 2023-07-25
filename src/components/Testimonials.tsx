@@ -45,7 +45,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="max-w-7xl relative mx-auto mt-20">
+    <section className="max-w-7xl relative mx-auto mt-20" id="testimonials">
       <h2 className="text-center text-black font-bold text-2xl">
         Client Testimonials
       </h2>

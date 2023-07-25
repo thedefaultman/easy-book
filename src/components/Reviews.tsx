@@ -21,7 +21,10 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ number, title, Icon }) => {
 
 const Reviews = () => {
   return (
-    <div className="flex flex-col gap-10 items-center justify-center mt-20">
+    <section
+      className="flex flex-col gap-10 items-center justify-center mt-20"
+      id="reviews"
+    >
       <div className="relative mx-auto">
         <h1 className="text-3xl font-bold text-center">
           OUR WORK SPEAKS FOR ITSELF
@@ -48,7 +51,7 @@ const Reviews = () => {
         />
         <ReviewCard number={"11K"} title="Subscribers" Icon={GoPeople} />
       </div>
-    </div>
+    </section>
   );
 };
 
