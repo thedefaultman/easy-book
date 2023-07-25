@@ -53,14 +53,12 @@ const AuthModal = () => {
   const handleSignUp = async () => {
     // add validation for all fields
     if (
-      !doctor ||
-      !patient ||
+      (!doctor && !patient) ||
       !user_id ||
       !firstName ||
       !lastName ||
       !email ||
-      !password ||
-      (!patient && !doctor)
+      !password
     ) {
       toast.error("Please fill out all fields");
       return;
@@ -160,7 +158,6 @@ const AuthModal = () => {
               setDoctor(!doctor);
               setPatient(false);
             }}
-            required
           />
           <label htmlFor="doctor">Doctor</label>
           <input
@@ -171,7 +168,6 @@ const AuthModal = () => {
               setPatient(!patient);
               setDoctor(false);
             }}
-            required
           />
           <label htmlFor="patient">Patient</label>
         </div>
