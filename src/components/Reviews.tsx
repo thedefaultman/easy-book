@@ -22,15 +22,19 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ number, title, Icon }) => {
 const Reviews = () => {
   return (
     <div className="flex flex-col gap-10 items-center justify-center mt-20">
-      <h1 className="text-3xl font-bold">OUR WORK SPEAKS FOR ITSELF</h1>
-      <p className="text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-        placeat! Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet
-        consectetur adipisicing elit. Recusandae, suscipit! Ad id nisi deleniti
-        dolore?
-      </p>
+      <div className="relative mx-auto">
+        <h1 className="text-3xl font-bold text-center">
+          OUR WORK SPEAKS FOR ITSELF
+        </h1>
+        <p className="text-center mt-5">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          placeat! Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet
+          consectetur adipisicing elit. Recusandae, suscipit! Ad id nisi
+          deleniti dolore?
+        </p>
+      </div>
 
-      <div className="flex justify-center items-center w-full gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative mx-auto gap-10">
         <ReviewCard number={"250"} title="Happy Customers" Icon={GoSmiley} />
         <ReviewCard
           number={"600"}
