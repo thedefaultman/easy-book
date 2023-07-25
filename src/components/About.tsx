@@ -12,7 +12,7 @@ interface AboutCardProps {
 
 const AboutCard: React.FC<AboutCardProps> = ({ description, Icon }) => {
   return (
-    <div className="flex flex-col gap-3 items-start justify-start p-2">
+    <div className="flex flex-col gap-3 items-start justify-start p-2 border-b-2 border-black">
       <Icon size={30} />
       <p className="text-neutral-600">{description}</p>
     </div>
