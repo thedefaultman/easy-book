@@ -16,13 +16,6 @@ const AllergyDropdown = () => {
     getAllergies();
   }, [setAllergies]);
 
-  const onChange = (
-    option: readonly unknown[],
-    actionMeta: ActionMeta<unknown>
-  ) => {
-    setSelectedAllergies(option as Allergy[]);
-  };
-
   return (
     <div className="flex flex-col w-full mt-2">
       <label
@@ -36,12 +29,15 @@ const AllergyDropdown = () => {
         options={allergies.map((allergy) => ({
           value: allergy.allergy_id,
           label: allergy.name,
+          allergy_id: allergy.allergy_id,
         }))}
         isMulti
         name="allergy"
         classNamePrefix="select"
         placeholder="Select Allergies If Any"
-        onChange={onChange}
+        onChange={(e) => {
+          setSelectedAllergies(e as unknown as Allergy[]);
+        }}
         required={false}
       />
     </div>

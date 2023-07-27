@@ -34,6 +34,8 @@ const AuthModal = () => {
     address,
     phone,
     specialization,
+    selectedAllergies,
+    selectedMedications,
     setLogin,
     setSpecialization,
     setEmail,
@@ -49,7 +51,9 @@ const AuthModal = () => {
       router.refresh();
       close();
     }
-  }, [close, router, session]);
+
+    console.log(selectedAllergies);
+  }, [close, router, session, selectedAllergies]);
 
   const handleLogin = async () => {
     const { error } = await supabaseClient.auth.signInWithPassword({
@@ -69,20 +73,6 @@ const AuthModal = () => {
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
-    console.log(DOB.toDateString().split(" ").slice(1).join(" "));
-
-    console.log({
-      email,
-      password,
-      firstName,
-      lastName,
-      user_id,
-      gender,
-      address,
-      phone,
-      specialization,
-    });
-
     e.preventDefault();
 
     const { data: patientData, error: patientError } = await supabaseClient
@@ -129,8 +119,6 @@ const AuthModal = () => {
     });
 
     if (error) {
-      console.log(error);
-
       toast.error(
         error.message + "\nMake sure you have filled all the fields!"
       );
@@ -138,7 +126,50 @@ const AuthModal = () => {
     }
 
     if (data.user) {
-      toast.success("Account created successfully!");
+      if (patient) {
+        if (selectedAllergies.length) {
+          const { data: allergyData, error: allergyError } =
+            await supabaseClient.from("history_allergy").insert(
+              selectedAllergies.map((allergy) => ({
+                PHN: user_id,
+                allergy_id: allergy.allergy_id,
+              }))
+            );
+
+          console.log(
+            selectedAllergies.map((allergy) => ({
+              PHN: user_id,
+              allergy_id: allergy.allergy_id,
+            }))
+          );
+
+          if (allergyError) {
+            toast.error(allergyError.message);
+            return;
+          }
+        }
+
+        if (selectedMedications.length) {
+          const { data: medicationData, error: medicationError } =
+            await supabaseClient.from("history_medication").insert(
+              selectedMedications.map((medication) => ({
+                PHN: user_id,
+                medicine_id: medication.medicine_id,
+              }))
+            );
+
+          if (medicationError) {
+            toast.error(medicationError.message);
+            return;
+          }
+        }
+
+        toast.success("Signed up successfully!");
+        reset();
+      } else {
+        toast.success("Signed up successfully!");
+        reset();
+      }
     }
   };
 

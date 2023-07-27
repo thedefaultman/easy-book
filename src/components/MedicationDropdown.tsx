@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Medication } from "@/lib/types/types";
-import Select, { ActionMeta } from "react-select";
+import Select from "react-select";
 
 import useUserInfo from "@/hooks/useUserInfo";
 
@@ -16,13 +16,6 @@ const MedicationDropdown = () => {
     getAllergies();
   }, [setMedications]);
 
-  const onChange = (
-    option: readonly unknown[],
-    actionMeta: ActionMeta<unknown>
-  ) => {
-    setSelectedMedications(option as Medication[]);
-  };
-
   return (
     <div className="flex flex-col w-full mt-2">
       <label
@@ -36,12 +29,15 @@ const MedicationDropdown = () => {
         options={medications.map((allergy) => ({
           value: allergy.medicine_id,
           label: allergy.name,
+          medicine_id: allergy.medicine_id,
         }))}
         isMulti
         name="medications"
         classNamePrefix="select"
         placeholder="Select medications being taken if any"
-        onChange={onChange}
+        onChange={(e) => {
+          setSelectedMedications(e as unknown as Medication[]);
+        }}
         required={false}
       />
     </div>
