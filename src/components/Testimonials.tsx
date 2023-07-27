@@ -56,7 +56,7 @@ const Testimonials = () => {
         dynamicHeight={true}
         className="mt-10 h-full w-full rounded-sm"
         showStatus={false}
-        showThumbs={true}
+        showThumbs={false}
         renderArrowPrev={(clickHandler, hasPrev) => {
           return (
             <div
