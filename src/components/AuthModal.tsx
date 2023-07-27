@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   useSupabaseClient,
   useSessionContext,
@@ -10,6 +10,9 @@ import toast from "react-hot-toast";
 
 import { useAuthModal } from "@/hooks/useAuthModal";
 import Modal from "./Modal";
+import useUserInfo from "@/hooks/useUserInfo";
+import PatientAuth from "./PatientAuth";
+import AuthInfo from "./AuthInfo";
 
 const AuthModal = () => {
   const { close, isOpen } = useAuthModal();
@@ -17,14 +20,28 @@ const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
   const { session } = useSessionContext();
 
-  const [login, setLogin] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [patient, setPatient] = useState(true);
-  const [doctor, setDoctor] = useState(false);
-  const [user_id, setUser_id] = useState("");
+  const {
+    login,
+    user_id,
+    firstName,
+    lastName,
+    email,
+    password,
+    patient,
+    doctor,
+    DOB,
+    gender,
+    address,
+    phone,
+    specialization,
+    setSpecialization,
+    setEmail,
+    setPassword,
+    setPatient,
+    setDoctor,
+    setUser_id,
+    reset,
+  } = useUserInfo();
 
   useEffect(() => {
     if (session) {
@@ -50,17 +67,45 @@ const AuthModal = () => {
     }
   };
 
-  const handleSignUp = async () => {
-    // add validation for all fields
-    if (
-      (!doctor && !patient) ||
-      !user_id ||
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password
-    ) {
-      toast.error("Please fill out all fields");
+  const handleSignUp = async (e: React.FormEvent) => {
+    console.log(DOB.toDateString().split(" ").slice(1).join(" "));
+
+    console.log({
+      email,
+      password,
+      firstName,
+      lastName,
+      user_id,
+      gender,
+      address,
+      phone,
+      specialization,
+    });
+
+    e.preventDefault();
+
+    const { data: patientData, error: patientError } = await supabaseClient
+      .from("patient")
+      .select("*")
+      .eq("email", email);
+
+    const { data: doctorData, error: doctorError } = await supabaseClient
+      .from("doctor")
+      .select("*")
+      .eq("email", email);
+
+    if (patientError) {
+      toast.error(patientError.message);
+      return;
+    }
+
+    if (doctorError) {
+      toast.error(doctorError.message);
+      return;
+    }
+
+    if (patientData?.length || doctorData?.length) {
+      toast.error("Email already exists!");
       return;
     }
 
@@ -73,16 +118,27 @@ const AuthModal = () => {
           last_name: lastName,
           user_role: doctor ? "Doctor" : "Patient",
           user_id: user_id,
+          dob: DOB.toISOString().toLocaleString(),
+          gender: gender,
+          address: address,
+          phone: phone,
+          specialization: specialization,
         },
       },
     });
 
     if (error) {
-      toast.error(error.message);
+      console.log(error);
+
+      toast.error(
+        error.message + "\nMake sure you have filled all the fields!"
+      );
       return;
     }
 
-    toast.success("Account created successfully!");
+    if (data.user) {
+      toast.success("Account created successfully!");
+    }
   };
 
   return (
@@ -95,31 +151,8 @@ const AuthModal = () => {
       }}
     >
       <form action="">
-        {" "}
-        <div className={`flex flex-col ${login && "hidden"}`}>
-          <label htmlFor="firstName">Name</label>
-          <div className="flex justify-between items-center gap-x-3">
-            <input
-              name="first"
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-              required
-            />
+        {!login && <AuthInfo />}
 
-            <input
-              name="last"
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-              required
-            />
-          </div>
-        </div>
         <div className="flex flex-col mt-2">
           <label htmlFor="email">Email Address</label>
           <input
@@ -179,7 +212,7 @@ const AuthModal = () => {
             {patient ? "Personal Health Number" : "Doctor's License"}
           </label>
           <input
-            type="text"
+            type="tel"
             name="id"
             placeholder={patient ? "PHN" : "License"}
             className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
@@ -188,42 +221,49 @@ const AuthModal = () => {
             onChange={(e) => setUser_id(e.target.value)}
             required
           />
+          {patient && <PatientAuth />}
+          {doctor && (
+            <>
+              <label htmlFor="specialization" className="mt-2">
+                Specialization
+              </label>
+              <input
+                type="text"
+                name="specialization"
+                placeholder="Specialization"
+                className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+                value={specialization}
+                onChange={(e) => setSpecialization(e.target.value)}
+                required
+              />
+            </>
+          )}
         </div>
+
         <div
           className={`flex justify-between items-center mt-2 ${
             !login && "hidden"
           }`}
         >
           <div className="flex gap-x-2">
-            <input type="checkbox" name="remember" required />
+            <input type="checkbox" name="remember" />
             <label htmlFor="remember">Remember me</label>
           </div>
 
           <button className="text-blue text-sm">Forgot password</button>
         </div>
         <button
+          type="submit"
           className="bg-blue text-white px-2 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue w-full mt-4"
-          onClick={() => {
-            login ? handleLogin() : handleSignUp();
+          onClick={(e) => {
+            login ? handleLogin() : handleSignUp(e);
           }}
         >
           {login ? "Login" : "Sign Up"}
         </button>
         <div className="flex justify-center items-center mt-4">
           <p className="text-black">{"Don't have an account?"}</p>
-          <button
-            className="text-blue text-sm ml-2"
-            onClick={() => {
-              setLogin(!login);
-              setUser_id("");
-              setFirstName("");
-              setLastName("");
-              setEmail("");
-              setPassword("");
-              setDoctor(false);
-              setPatient(false);
-            }}
-          >
+          <button className="text-blue text-sm ml-2" onClick={reset}>
             {login ? "Sign Up" : "Login"}
           </button>
         </div>
