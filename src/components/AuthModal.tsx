@@ -34,6 +34,7 @@ const AuthModal = () => {
     address,
     phone,
     specialization,
+    setLogin,
     setSpecialization,
     setEmail,
     setPassword,
@@ -204,41 +205,41 @@ const AuthModal = () => {
           />
           <label htmlFor="patient">Patient</label>
         </div>
-        <div
-          className={`flex flex-col mt-2 ${!patient && !doctor && "hidden"}`}
-        >
-          <label htmlFor="id">
-            {"Please Enter Your 10-Digit "}
-            {patient ? "Personal Health Number" : "Doctor's License"}
-          </label>
-          <input
-            type="tel"
-            name="id"
-            placeholder={patient ? "PHN" : "License"}
-            className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-            maxLength={10}
-            value={user_id}
-            onChange={(e) => setUser_id(e.target.value)}
-            required
-          />
-          {patient && <PatientAuth />}
-          {doctor && (
-            <>
-              <label htmlFor="specialization" className="mt-2">
-                Specialization
-              </label>
-              <input
-                type="text"
-                name="specialization"
-                placeholder="Specialization"
-                className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
-                value={specialization}
-                onChange={(e) => setSpecialization(e.target.value)}
-                required
-              />
-            </>
-          )}
-        </div>
+        {!login && (
+          <div className="flex flex-col mt-2">
+            <label htmlFor="id">
+              {"Please Enter Your 10-Digit "}
+              {patient ? "Personal Health Number" : "Doctor's License"}
+            </label>
+            <input
+              type="tel"
+              name="id"
+              placeholder={patient ? "PHN" : "License"}
+              className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+              maxLength={10}
+              value={user_id}
+              onChange={(e) => setUser_id(e.target.value)}
+              required
+            />
+            {patient && <PatientAuth />}
+            {doctor && (
+              <>
+                <label htmlFor="specialization" className="mt-2">
+                  Specialization
+                </label>
+                <input
+                  type="text"
+                  name="specialization"
+                  placeholder="Specialization"
+                  className="bg-neutral-200 px-2 py-1 rounded-sm w-full"
+                  value={specialization}
+                  onChange={(e) => setSpecialization(e.target.value)}
+                  required
+                />
+              </>
+            )}
+          </div>
+        )}
 
         <div
           className={`flex justify-between items-center mt-2 ${
@@ -262,8 +263,15 @@ const AuthModal = () => {
           {login ? "Login" : "Sign Up"}
         </button>
         <div className="flex justify-center items-center mt-4">
-          <p className="text-black">{"Don't have an account?"}</p>
-          <button className="text-blue text-sm ml-2" onClick={reset}>
+          <p className="text-black">
+            {!login ? "Already have an account?" : "Don't have an account?"}
+          </p>
+          <button
+            className="text-blue text-sm ml-2"
+            onClick={() => {
+              setLogin(!login);
+            }}
+          >
             {login ? "Sign Up" : "Login"}
           </button>
         </div>
