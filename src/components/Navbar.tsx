@@ -4,9 +4,11 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { RxHamburgerMenu } from "react-icons/rx";
+import useUserInfo from "@/hooks/useUserInfo";
 
 const Navbar = () => {
   const { open } = useAuthModal();
+  const { setLogin } = useUserInfo();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const routes = useMemo(
@@ -15,16 +17,22 @@ const Navbar = () => {
         label: "Login",
         className:
           "bg-white border border-blue text-blue px-4 py-1 rounded-sm hover:bg-blue hover:text-white hover:border hover:border-white",
-        onClick: open,
+        onClick: () => {
+          open();
+          setLogin(true);
+        },
       },
       {
         label: "Signup",
         className:
           "bg-blue text-white px-4 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue",
-        onClick: open,
+        onClick: () => {
+          open();
+          setLogin(false);
+        },
       },
     ],
-    [open]
+    [open, setLogin]
   );
 
   return (
