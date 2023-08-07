@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {session && !isLoadingUser && (
+      {session && !isLoadingUser ? (
         <Sidebar>
           {isLoadingUser && (
             <div className="flex justify-center items-center relative mx-auto w-full h-full">
@@ -68,10 +68,11 @@ const Dashboard = () => {
           {userDetails && userType === "patient" && <PatientDashboard />}
           {userDetails && userType === "doctor" && <DoctorDashboard />}
         </Sidebar>
+      ) : (
+        <h1 className="flex items-center justify-center h-full w-full text-blue font-bold">
+          Access Unauthorized
+        </h1>
       )}
-      <h1 className="flex items-center justify-center h-full w-full text-blue font-bold">
-        Access Unauthorized
-      </h1>
     </>
   );
 };
