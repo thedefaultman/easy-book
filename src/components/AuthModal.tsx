@@ -55,16 +55,19 @@ const AuthModal = () => {
     console.log(selectedAllergies);
   }, [close, router, session, selectedAllergies]);
 
-  const handleLogin = async () => {
-    const { error } = await supabaseClient.auth.signInWithPassword({
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       toast.error(error.message);
-    } else {
+    } else if (data) {
       toast.success("Logged in successfully!");
+      router.push("/dashboard");
     }
 
     if (session) {
@@ -288,7 +291,7 @@ const AuthModal = () => {
           type="submit"
           className="bg-blue text-white px-2 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue w-full mt-4"
           onClick={(e) => {
-            login ? handleLogin() : handleSignUp(e);
+            login ? handleLogin(e) : handleSignUp(e);
           }}
         >
           {login ? "Login" : "Sign Up"}
