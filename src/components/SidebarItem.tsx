@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 
 interface SidebarItemProps {
   icon: IconType;
-  label: string;
+  label?: string;
   active?: boolean;
   href: string;
 }
@@ -18,12 +18,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   return (
     <Link
       href={href}
-      className={`flex w-full text-black font-medium p-3 items-center gap-x-4 cursor-pointer hover:text-blue transition ${
+      className={`flex text-black font-medium p-3 items-center gap-x-4 cursor-pointer hover:text-blue transition ${
         active && "text-blue"
       }`}
     >
       <Icon size={26} />
-      <p className="truncate w-full">{label}</p>
+      {label && <p className="truncate w-full">{label}</p>}
     </Link>
   );
 };

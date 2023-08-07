@@ -20,13 +20,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
     () => [
       {
         icon: HiHome,
-        label: "Home",
         active: pathname === "/dashboard",
         href: "/dashboard",
       },
       {
         icon: CgProfile,
-        label: "Profile",
         active: pathname === "/dashboard/profile",
         href: "/dashboard/profile",
       },
@@ -37,18 +35,22 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   return (
     <div className="flex h-full">
       <div className="hidden md:flex flex-col gap-y-2 bg-white h-full w-[300px] p-2 text-black">
-        <h1 className="text-black font-medium text-xl text-center bg-slate-100 p-2 rounded-lg">
-          EasyBook
-        </h1>
         <Box>
-          {routes.map((route) => (
-            <SidebarItem key={route.label} {...route} />
-          ))}
+          <h1 className="text-black font-medium text-xl text-center bg-slate-100 p-2 rounded-lg">
+            EasyBook
+          </h1>
+          <div className="flex justify-center items-center">
+            {routes.map((route) => (
+              <SidebarItem key={route.href} {...route} />
+            ))}
+          </div>
         </Box>
+
         <Box className="h-full">
           <DashboardNav />
         </Box>
       </div>
+
       <main className="h-full flex-1 overflow-y-auto py-2 bg-slate-100">
         {children}
       </main>
