@@ -1,6 +1,6 @@
 "use client";
-import { use, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { Doctor, Patient } from "@/lib/types/types";
@@ -15,14 +15,12 @@ const Dashboard = () => {
     session,
   } = useSessionContext();
 
-  const router = useRouter();
-
   const [userDetails, setUserDetails] = useState<Patient | Doctor | null>(null);
   const [userType, setUserType] = useState<"patient" | "doctor" | null>(null);
 
   useEffect(() => {
     if (!session) {
-      router.push("/");
+      redirect("/");
     }
 
     const getUserDetails = async () => {
@@ -53,7 +51,7 @@ const Dashboard = () => {
     };
 
     getUserDetails();
-  }, [router, session, session?.user.id, supabase]);
+  }, [session, session?.user.id, supabase]);
 
   return (
     <>

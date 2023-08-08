@@ -8,7 +8,6 @@ const PatientOverview = () => {
       const response = await fetch("/api/getDoctorVisits");
       const data = await response.json();
       setDoctorVisits(data);
-      console.log(data);
     };
 
     getDoctorVisits();
