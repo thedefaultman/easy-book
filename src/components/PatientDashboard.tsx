@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PatientOverview from "./PatientOverview";
 import PatientHistory from "./PatientHistory";
+import Doctors from "./Doctors";
 
 const PatientDashboard = () => {
   const [active, setActive] = useState("Overview");
@@ -42,7 +43,7 @@ const PatientDashboard = () => {
       {active === "Overview" && <PatientOverview />}
       {active === "Appointments" && <div>Appointments</div>}
       {active === "My History" && <PatientHistory />}
-      {active === "Doctors" && <div>Doctors</div>}
+      {active === "Doctors" && <Doctors />}
     </div>
   );
 };
