@@ -64,6 +64,9 @@ export interface Allergy {
     PHN: string;
     phone: string | null;
     user_id: string;
+    allergies?: string[] | null;
+    medications?: string[] | null;
+    records?: Record[] | null;
   }
   
   export interface Record {
