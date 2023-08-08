@@ -51,8 +51,6 @@ const AuthModal = () => {
       router.refresh();
       close();
     }
-
-    console.log(selectedAllergies);
   }, [close, router, session, selectedAllergies]);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -138,13 +136,6 @@ const AuthModal = () => {
                 allergy_id: allergy.allergy_id,
               }))
             );
-
-          console.log(
-            selectedAllergies.map((allergy) => ({
-              PHN: user_id,
-              allergy_id: allergy.allergy_id,
-            }))
-          );
 
           if (allergyError) {
             toast.error(allergyError.message);
