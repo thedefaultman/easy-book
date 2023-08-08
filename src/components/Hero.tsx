@@ -1,4 +1,9 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 const Hero = () => {
+  const router = useRouter();
   return (
     <div className="flex flex-col justify-start items-start">
       <h1 className="text-3xl font-black max-w-md">
@@ -12,11 +17,17 @@ const Hero = () => {
       </p>
 
       <div className="flex gap-x-5 mt-10">
-        <button className="bg-blue text-white border border-blue rounded-sm py-2 px-3 hover:bg-white hover:text-blue hover:border-blue">
-          Primary Action
+        <button
+          type="button"
+          className="bg-blue text-white border border-blue rounded-sm py-2 px-3 hover:bg-white hover:text-blue hover:border-blue"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          Dashboard
         </button>
         <button className="text-blue bg-white border rounded-sm px-3 py-2 border-blue hover:bg-blue hover:text-white hover:border hover:border-white">
-          Secondary Action
+          Book an appointment
         </button>
       </div>
     </div>
