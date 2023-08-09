@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useSection } from "@/hooks/useSection";
 import PatientOverview from "./PatientOverview";
 import PatientHistory from "./PatientHistory";
 import Doctors from "./Doctors";
 
 const PatientDashboard = () => {
-  const [active, setActive] = useState("Overview");
-  const buttons = [
+  const { activeSection, setSection } = useSection();
+  const sections = [
     {
       name: "Overview",
     },
@@ -25,25 +25,25 @@ const PatientDashboard = () => {
       <h1 className="text-3xl font-bold p-4">Patient Dashboard</h1>
 
       <div className="flex justify-start items-center gap-x-4 p-4">
-        {buttons.map((button) => (
+        {sections.map((section) => (
           <button
-            key={button.name}
+            key={section.name}
             className={`text-md text-black ${
-              button.name === active && "text-blue border-b border-blue"
+              section.name === activeSection && "text-blue border-b border-blue"
             }`}
             onClick={() => {
-              setActive(button.name);
+              setSection(section.name);
             }}
           >
-            {button.name}
+            {section.name}
           </button>
         ))}
       </div>
 
-      {active === "Overview" && <PatientOverview />}
-      {active === "Appointments" && <div>Appointments</div>}
-      {active === "My History" && <PatientHistory />}
-      {active === "Doctors" && <Doctors />}
+      {activeSection === "Overview" && <PatientOverview />}
+      {activeSection === "Appointments" && <div>Appointments</div>}
+      {activeSection === "My History" && <PatientHistory />}
+      {activeSection === "Doctors" && <Doctors />}
     </div>
   );
 };

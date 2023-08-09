@@ -1,30 +1,35 @@
 import React from "react";
-import Link from "next/link";
 import { IconType } from "react-icons";
+import { useSection } from "@/hooks/useSection";
 
 interface SidebarItemProps {
+  name: string;
   icon: IconType;
   label?: string;
   active?: boolean;
-  href: string;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
+  name,
   icon: Icon,
   label,
   active,
-  href,
 }) => {
+  const { setSection } = useSection();
+
   return (
-    <Link
-      href={href}
+    <button
+      type="button"
       className={`flex text-black font-medium p-3 items-center gap-x-4 cursor-pointer hover:text-blue transition ${
         active && "text-blue"
       }`}
+      onClick={() => {
+        setSection(name);
+      }}
     >
       <Icon size={26} />
       {label && <p className="truncate w-full">{label}</p>}
-    </Link>
+    </button>
   );
 };
 

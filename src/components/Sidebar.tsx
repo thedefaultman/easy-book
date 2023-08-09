@@ -1,35 +1,35 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { usePathname } from "next/navigation";
 import { HiHome } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 
 import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import DashboardNav from "./DashboardNav";
+import { useSection } from "@/hooks/useSection";
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
-  const pathname = usePathname();
+  const { activeSection, setSection } = useSection();
 
   const routes = useMemo(
     () => [
       {
+        name: "Overview",
         icon: HiHome,
-        active: pathname === "/dashboard",
-        href: "/dashboard",
+        active: activeSection === "Overview",
       },
       {
+        name: "My History",
         icon: CgProfile,
-        active: pathname === "/dashboard/profile",
-        href: "/dashboard/profile",
+        active: activeSection === "My History",
       },
     ],
-    [pathname]
+    [activeSection]
   );
 
   return (
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </h1>
           <div className="flex justify-center items-center">
             {routes.map((route) => (
-              <SidebarItem key={route.href} {...route} />
+              <SidebarItem key={route.name} {...route} />
             ))}
           </div>
         </Box>
