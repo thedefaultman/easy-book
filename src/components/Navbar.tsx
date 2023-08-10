@@ -5,11 +5,22 @@ import Link from "next/link";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { RxHamburgerMenu } from "react-icons/rx";
 import useUserInfo from "@/hooks/useUserInfo";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { open } = useAuthModal();
   const { setLogin } = useUserInfo();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hasSession, setHasSession] = useState(false);
+
+  const { session } = useSessionContext();
+
+  useMemo(() => {
+    if (session) {
+      setHasSession(true);
+    }
+  }, [session]);
 
   const routes = useMemo(
     () => [
@@ -18,6 +29,7 @@ const Navbar = () => {
         className:
           "bg-white border border-blue text-blue px-4 py-1 rounded-sm hover:bg-blue hover:text-white hover:border hover:border-white",
         onClick: () => {
+          if (hasSession) return toast.error("You are already logged in");
           open();
           setLogin(true);
         },
@@ -27,12 +39,13 @@ const Navbar = () => {
         className:
           "bg-blue text-white px-4 py-1 rounded-sm border border-blue hover:bg-white hover:text-blue hover:border-blue",
         onClick: () => {
+          if (hasSession) return toast.error("You are already logged in");
           open();
           setLogin(false);
         },
       },
     ],
-    [open, setLogin]
+    [open, setLogin, hasSession]
   );
 
   return (
@@ -59,13 +72,13 @@ const Navbar = () => {
         <h1 className="text-neutral-900 font-bold text-3xl">EASY BOOK</h1>
       </div>
 
-      <ul className="gap-x-2 hidden md:flex">
+      <div className="gap-x-2 hidden md:flex">
         {routes.map(({ label, className, onClick }) => (
-          <li key={label} className={className} onClick={onClick}>
+          <button key={label} className={className} onClick={onClick}>
             {label}
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
 
       <div className="flex md:hidden">
         <RxHamburgerMenu
@@ -91,7 +104,7 @@ const Navbar = () => {
               </Link>
             </li>
             {routes.map(({ label, className, onClick }) => (
-              <li
+              <button
                 key={label}
                 className={className}
                 onClick={() => {
@@ -100,7 +113,7 @@ const Navbar = () => {
                 }}
               >
                 {label}
-              </li>
+              </button>
             ))}
           </ul>
         )}
