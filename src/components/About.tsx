@@ -31,19 +31,19 @@ const About = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
         <AboutCard
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          description="Effortlessly manage your appointments and stay organized with EasyBook's intuitive booking system."
           Icon={BsCalendar4}
         />
         <AboutCard
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          description="Streamline your healthcare journey by securely accessing your medical records and history on-the-go."
           Icon={IoBriefcaseOutline}
         />
         <AboutCard
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          description="Get on-the-go notifications about your upcoming appointments so you never miss your visit."
           Icon={TbActivityHeartbeat}
         />
         <AboutCard
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+          description="Navigate to appointments with ease using our integrated location services, ensuring a smooth journey to better health."
           Icon={AiOutlineCar}
         />
       </div>
