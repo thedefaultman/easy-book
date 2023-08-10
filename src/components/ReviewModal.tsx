@@ -1,21 +1,9 @@
-"use client";
-
-import { useEffect } from "react";
-import {
-  useSupabaseClient,
-  useSessionContext,
-} from "@supabase/auth-helpers-react";
 import { useReviewModal } from "@/hooks/useReviewModal";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import Modal from "./Modal";
 import Rating from "./Rating";
 
 const ReviewModal = () => {
   const { onClose, isOpen, doctor } = useReviewModal();
-  const router = useRouter();
-  const supabaseClient = useSupabaseClient();
-  const { session } = useSessionContext();
 
   return (
     <Modal
