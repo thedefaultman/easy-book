@@ -41,6 +41,15 @@ const Doctors = () => {
                 </p>
                 <p>Gender: {doctor.gender || "N/A"}</p>
               </div>
+              <div className="mt-4 flex justify-start items-start gap-x-4 w-full">
+                <button className="bg-blue-500 hover:bg-blue-600 text-white bg-blue rounded-md text-sm p-2 hover:text-blue hover:border-blue hover:bg-white">
+                  Leave a Review
+                </button>
+
+                <button className="bg-blue-500 hover:bg-blue-600 text-blue border border-blue rounded-md text-sm p-2 hover:text-white hover:bg-blue">
+                  View Reviews
+                </button>
+              </div>
             </div>
           ))}
         </div>
