@@ -13,6 +13,10 @@ export interface Allergy {
     reason?: string | null;
     status: string;
     time: string;
+    patient_first: string;
+    patient_last: string;
+    doctor_first: string;
+    doctor_last: string;
   }
   
   export interface Doctor {
