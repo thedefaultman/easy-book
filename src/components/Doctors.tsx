@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { Doctor } from "@/lib/types/types";
 import { useReviewModal } from "@/hooks/useReviewModal";
+import { useBookingModal } from "@/hooks/useBookingModal";
 import { PulseLoader } from "react-spinners";
 
 const Doctors = () => {
   const [user, setUser] = useState<Doctor[] | null>(null);
-  const { onOpen, setDoctor } = useReviewModal();
+  const { onOpen: openReviewModal, setDoctor: setReviewDoctor } =
+    useReviewModal();
+  const { onOpen: openBookingModal, setDoctor: setBookingDoctor } =
+    useBookingModal();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,9 +26,14 @@ const Doctors = () => {
 
   const handleReview = async (e: React.FormEvent, doctor: Doctor) => {
     e.preventDefault();
+    setReviewDoctor(doctor);
+    openReviewModal();
+  };
 
-    setDoctor(doctor);
-    onOpen();
+  const handleBooking = async (e: React.FormEvent, doctor: Doctor) => {
+    e.preventDefault();
+    setBookingDoctor(doctor);
+    openBookingModal();
   };
 
   return (
@@ -63,12 +72,18 @@ const Doctors = () => {
                     </p>
                     <p>Gender: {doctor.gender || "N/A"}</p>
                   </div>
-                  <div className="mt-4 flex justify-start items-start gap-x-4 w-full">
+                  <div className="mt-4 flex flex-col justify-start items-start gap-y-4 w-full">
                     <button
                       onClick={(e) => handleReview(e, doctor)}
                       className="bg-blue-500 hover:bg-blue-600 text-white bg-blue rounded-md text-sm p-2 hover:text-blue hover:border-blue hover:bg-white w-full"
                     >
                       Leave a Review
+                    </button>
+                    <button
+                      onClick={(e) => handleBooking(e, doctor)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white bg-blue rounded-md text-sm p-2 hover:text-blue hover:border-blue hover:bg-white w-full"
+                    >
+                      Book with this Doctor
                     </button>
                   </div>
                 </div>
