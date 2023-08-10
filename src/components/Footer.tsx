@@ -26,36 +26,36 @@ const Footer = () => {
         <div>
           <h3 className="text-neutral-300 text-lg font-medium">About</h3>
           <ul className="text-neutral-300 text-sm font-medium">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li>Our Mission</li>
+            <li>Our Team</li>
+            <li>Copyright</li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">Contact</h3>
+          <h3 className="text-neutral-300 text-lg font-medium">Contact Us</h3>
           <ul className="text-neutral-300 text-sm font-medium">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li>Email</li>
+            <li>Phone</li>
+            <li>Fax</li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-neutral-300 text-lg font-medium">Social</h3>
           <ul className="text-neutral-300 text-sm font-medium">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>Twitter</li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">Appstore</h3>
+          <h3 className="text-neutral-300 text-lg font-medium">App Store</h3>
           <ul className="text-neutral-300 text-sm font-medium">
-            <li>Appstore</li>
+            <li>App Store</li>
             <li>GooglePlay</li>
-            <li>Join Us</li>
+            <li>Samsung Galaxy Store</li>
           </ul>
         </div>
       </div>
