@@ -2,6 +2,7 @@ import { useSection } from "@/hooks/useSection";
 import PatientOverview from "./PatientOverview";
 import PatientHistory from "./PatientHistory";
 import Doctors from "./Doctors";
+import Appointment from "./Appointments";
 
 const PatientDashboard = () => {
   const { activeSection, setSection } = useSection();
@@ -41,7 +42,7 @@ const PatientDashboard = () => {
       </div>
 
       {activeSection === "Overview" && <PatientOverview />}
-      {activeSection === "Appointments" && <div>Appointments</div>}
+      {activeSection === "Appointments" && <Appointment />}
       {activeSection === "My History" && <PatientHistory />}
       {activeSection === "Doctors" && <Doctors />}
     </div>
