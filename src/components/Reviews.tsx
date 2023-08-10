@@ -1,7 +1,7 @@
 import { GoSmiley, GoPeople } from "react-icons/go";
 import { IconType } from "react-icons/lib";
 import { MdOutlineFileCopy } from "react-icons/md";
-import { IoPizzaOutline } from "react-icons/io5";
+import { FaUserDoctor } from "react-icons/fa6";
 
 interface ReviewCardProps {
   number: string;
@@ -30,26 +30,33 @@ const Reviews = () => {
           OUR WORK SPEAKS FOR ITSELF
         </h1>
         <p className="text-center mt-5">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-          placeat! Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Recusandae, suscipit! Ad id nisi
-          deleniti dolore?
+          Our commitment to excellence shines through the numbers. With a 
+          rapidly growing user base, EasyBook has become a trusted companion 
+          for managing your healthcare journey.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative mx-auto gap-10">
-        <ReviewCard number={"250"} title="Happy Customers" Icon={GoSmiley} />
+        <ReviewCard 
+          number={"450"} 
+          title="Happy Users" 
+          Icon={GoSmiley} 
+        />
         <ReviewCard
           number={"600"}
-          title="Completed Projects"
+          title="Appointments Booked"
           Icon={MdOutlineFileCopy}
         />
         <ReviewCard
-          number={"1.8K"}
-          title="Available Resources"
-          Icon={IoPizzaOutline}
+          number={"1.2K"}
+          title="Registered Doctors"
+          Icon={FaUserDoctor}
         />
-        <ReviewCard number={"11K"} title="Subscribers" Icon={GoPeople} />
+        <ReviewCard 
+          number={"11K"} 
+          title="Registered Users" 
+          Icon={GoPeople} 
+        />
       </div>
     </section>
   );

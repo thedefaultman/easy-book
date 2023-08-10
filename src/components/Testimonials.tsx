@@ -6,6 +6,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { RiArrowLeftSLine as LeftIcon } from "react-icons/ri";
 import { RiArrowRightSLine as RightIcon } from "react-icons/ri";
 import { IconType } from "react-icons";
+import { FaUserDoctor } from "react-icons/fa6";
 
 interface Testimonials {
   name: string;
@@ -17,32 +18,39 @@ interface Testimonials {
 const Testimonials = () => {
   const testimonials: Testimonials[] = [
     {
-      name: "John Doe",
-      title: "CEO",
-      image: IoPersonOutline,
+      name: "Dr. Richardo Miros",
+      title: "Doctor",
+      image: FaUserDoctor,
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        "As a physician, EasyBook has revolutionized the way I manage my patient appointments. The convenience it brings not only benefits me, but my patients too. Kudos to the EasyBook team for making healthcare coordination a breeze!",
     },
     {
-      name: "Jane Doe",
-      title: "CEO",
+      name: "Carl Mark",
+      title: "Patient",
       image: IoPersonOutline,
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        "I thought keeping up with my health appointments was a chore until I found EasyBook. Now, I'm a pro at booking, managing, and showing up to my appointments on time. It's like having a personal health manager in my pocket!",
     },
     {
-      name: "John Doe",
-      title: "CEO",
-      image: IoPersonOutline,
+      name: "Dr. Simon Freud",
+      title: "Doctor",
+      image: FaUserDoctor,
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        "EasyBook is my secret weapon for optimizing patient care. Its intuitive interface and appointment tracking features make sure my patients get the attention they need when they need it. A must-have tool for every healthcare provider.",
     },
     {
-      name: "Jane Doe",
-      title: "CEO",
+      name: "Dr. De Kuiper",
+      title: "Doctor",
+      image: FaUserDoctor,
+      quote:
+        "EasyBook has transformed how I interact with my patients. I can securely access their medical histories and tailor treatments better than ever. It's an innovation that enhances both doctor-patient relationships and outcomes.",
+    },
+    {
+      name: "Gaëtan Douglas",
+      title: "Patient",
       image: IoPersonOutline,
       quote:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        "EasyBook takes the stress out of healthcare. I can book appointments from anywhere, and the timely reminders keep me on track. Now I can focus on getting well instead of getting lost in appointment scheduling.",
     },
   ];
 
