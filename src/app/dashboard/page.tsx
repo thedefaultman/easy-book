@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { redirect } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import { useSessionContext } from "@supabase/auth-helpers-react";
@@ -18,11 +18,13 @@ const Dashboard = () => {
   const [userDetails, setUserDetails] = useState<Patient | Doctor | null>(null);
   const [userType, setUserType] = useState<"patient" | "doctor" | null>(null);
 
-  useEffect(() => {
-    if (!session) {
+  useMemo(() => {
+    if (!session && !isLoadingUser) {
       redirect("/");
     }
+  }, [isLoadingUser, session]);
 
+  useEffect(() => {
     const getUserDetails = async () => {
       try {
         const { data: patientData, error: patientError } = await supabase
@@ -55,14 +57,13 @@ const Dashboard = () => {
 
   return (
     <>
+      {isLoadingUser && (
+        <div className="flex justify-center items-center relative mx-auto w-full h-full">
+          <PulseLoader color="#0F62FE" />
+        </div>
+      )}
       {session && !isLoadingUser ? (
         <Sidebar>
-          {isLoadingUser && (
-            <div className="flex justify-center items-center relative mx-auto w-full h-full">
-              <PulseLoader color="#0F62FE" />
-            </div>
-          )}
-
           {userDetails && userType === "patient" && <PatientDashboard />}
           {userDetails && userType === "doctor" && <DoctorDashboard />}
         </Sidebar>
