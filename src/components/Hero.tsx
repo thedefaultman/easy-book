@@ -17,13 +17,13 @@ const Hero = () => {
         Connect with your Doctor easier than ever
       </h1>
       <p className="mt-5 max-w-lg text-sm text-neutral-600">
-        Welcome to EasyBook, where the power to manage your health is at your 
-        fingertips. With our user-friendly platform, connecting with your 
-        doctor has never been more convenient. Say goodbye to long waiting 
-        times and endless phone calls – now you can effortlessly schedule 
-        appointments, receive timely reminders, and even engage in virtual 
-        consultations from the comfort of your home. Experience healthcare 
-        made simple with EasyBook, putting you in control of your well-being.
+        Welcome to EasyBook, where the power to manage your health is at your
+        fingertips. With our user-friendly platform, connecting with your doctor
+        has never been more convenient. Say goodbye to long waiting times and
+        endless phone calls – now you can effortlessly schedule appointments,
+        receive timely reminders, and even engage in virtual consultations from
+        the comfort of your home. Experience healthcare made simple with
+        EasyBook, putting you in control of your well-being.
       </p>
 
       <div className="flex gap-x-5 mt-10">
