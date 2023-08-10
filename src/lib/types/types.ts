@@ -87,4 +87,6 @@ export interface Allergy {
     PHN: string;
     rating: number;
     review_id: string;
+    patient_first: string;
+    patient_last: string;
   }
