@@ -51,7 +51,7 @@ const Doctors = () => {
                       </span>
                     </div>
                   </div>
-                  <h2 className="text-xl font-semibold mb-2">
+                  <h2 className="text-xl font-semibold mb-2 truncate">
                     Dr. {doctor.first_name} {doctor.last_name}
                   </h2>
                   <div className="text-gray-500">
