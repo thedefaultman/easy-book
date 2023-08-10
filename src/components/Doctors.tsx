@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Doctor } from "@/lib/types/types";
+import { useReviewModal } from "@/hooks/useReviewModal";
 
 const Doctors = () => {
   const [user, setUser] = useState<Doctor[] | null>(null);
+  const { isOpen, onOpen, onClose, doctor, setDoctor } = useReviewModal();
 
   useEffect(() => {
     const getPatient = async () => {
@@ -13,6 +15,13 @@ const Doctors = () => {
 
     getPatient();
   }, []);
+
+  const handleReview = async (e: React.FormEvent, doctor: Doctor) => {
+    e.preventDefault();
+
+    setDoctor(doctor);
+    onOpen();
+  };
 
   return (
     <div className="p-4">
@@ -42,12 +51,11 @@ const Doctors = () => {
                 <p>Gender: {doctor.gender || "N/A"}</p>
               </div>
               <div className="mt-4 flex justify-start items-start gap-x-4 w-full">
-                <button className="bg-blue-500 hover:bg-blue-600 text-white bg-blue rounded-md text-sm p-2 hover:text-blue hover:border-blue hover:bg-white">
+                <button
+                  onClick={(e) => handleReview(e, doctor)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white bg-blue rounded-md text-sm p-2 hover:text-blue hover:border-blue hover:bg-white w-full"
+                >
                   Leave a Review
-                </button>
-
-                <button className="bg-blue-500 hover:bg-blue-600 text-blue border border-blue rounded-md text-sm p-2 hover:text-white hover:bg-blue">
-                  View Reviews
                 </button>
               </div>
             </div>
