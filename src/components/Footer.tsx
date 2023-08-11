@@ -2,9 +2,9 @@ import { AiOutlineMail } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full mx-auto max-w-7xl overflow-hidden px-6 sm:px-16 bg-[#697077] py-12">
+    <footer className="relative w-full mx-auto max-w-7xl overflow-hidden px-6 sm:px-16 bg-[#1B3868] py-12">
       <div className="flex flex-col md:flex-row justify-between items-start w-full border-b-2 border-[#7F868C] pb-10 gap-2">
-        <h2 className="text-neutral-300 text-lg font-medium">EASY BOOK</h2>
+        <h2 className="text-white text-lg font-medium">EasyBook</h2>
 
         <div className="flex flex-col md:flex-row gap-2 justify-start items-start">
           <div className="flex justify-center items-center border">
@@ -24,7 +24,7 @@ const Footer = () => {
 
       <div className="flex justify-between items-center mt-10 border-b-2 border-[#7F868C] pb-10">
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">About</h3>
+          <h3 className="text-white text-lg font-medium">About</h3>
           <ul className="text-neutral-300 text-sm font-medium">
             <li>Our Mission</li>
             <li>Our Team</li>
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">Contact Us</h3>
+          <h3 className="text-white text-lg font-medium">Contact Us</h3>
           <ul className="text-neutral-300 text-sm font-medium">
             <li>Email</li>
             <li>Phone</li>
@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">Social</h3>
+          <h3 className="text-white text-lg font-medium">Social</h3>
           <ul className="text-neutral-300 text-sm font-medium">
             <li>Facebook</li>
             <li>Instagram</li>
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-neutral-300 text-lg font-medium">App Store</h3>
+          <h3 className="text-white text-lg font-medium">App Store</h3>
           <ul className="text-neutral-300 text-sm font-medium">
             <li>App Store</li>
             <li>GooglePlay</li>

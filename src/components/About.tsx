@@ -22,7 +22,7 @@ const AboutCard: React.FC<AboutCardProps> = ({ description, Icon }) => {
 const About = () => {
   return (
     <section
-      className="flex justify-between items-center w-full h-full mt-40 max-w-7xl"
+      className="flex justify-between items-center w-full h-full mt-40 max-w-7xl px-6 sm:px-16 relative mx-auto"
       id="about"
     >
       <div className="w-full h-full justify-center items-center rounded hidden lg:flex">

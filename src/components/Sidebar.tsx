@@ -34,9 +34,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
   return (
     <div className="flex h-full">
-      <div className="hidden md:flex flex-col gap-y-2 bg-white h-full w-[300px] p-2 text-black">
+      <div className="hidden md:flex flex-col gap-y-2 h-full w-[300px] p-2 text-black">
         <Box>
-          <h1 className="text-black font-medium text-xl text-center bg-slate-100 p-2 rounded-lg">
+          <h1 className="text-black font-bold text-3xl text-center p-2 rounded-lg">
             EasyBook
           </h1>
           <div className="flex justify-center items-center">
@@ -51,8 +51,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         </Box>
       </div>
 
-      <main className="h-full flex-1 overflow-y-auto py-2 bg-slate-100">
-        {children}
+      <main className="h-full flex-1 overflow-y-auto flex flex-col gap-y-2 p-2">
+        <Box className="h-full">{children}</Box>
       </main>
     </div>
   );

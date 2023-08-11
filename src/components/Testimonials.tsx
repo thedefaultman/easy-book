@@ -55,7 +55,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="max-w-7xl relative mx-auto mt-20" id="testimonials">
+    <section
+      className="max-w-7xl relative mx-auto px-6 sm:px-16 bg-white py-12"
+      id="testimonials"
+    >
       <h2 className="text-center text-black font-bold text-2xl">
         Client Testimonials
       </h2>

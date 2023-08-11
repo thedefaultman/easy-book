@@ -1,32 +1,24 @@
-"use client";
-
-import SidebarItem from "./SidebarItem";
-import { BsHouseAdd, BsFiletypeDoc } from "react-icons/bs";
+import Image from "next/image";
 
 const DashboardNav = () => {
-  const links = [
-    {
-      label: "Eleven",
-      href: "/eleven",
-      icon: BsHouseAdd,
-    },
-    {
-      label: "Twelve",
-      href: "/twelve",
-      icon: BsFiletypeDoc,
-    },
-  ];
-
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-between items-center p-4">
-        <div className="inline-flex items-center gap-x-2">search</div>
+    <div className="flex flex-col h-full">
+      <div className="relative rounded-lg min-h-[500px] p-4">
+        <Image
+          src="/brochure.jpg"
+          alt="brochure"
+          fill
+          className="object-cover"
+        />
       </div>
 
-      <div className="flex flex-col gap-y-2 mt-4 px-3">
-        {links.map((link) => (
-          <SidebarItem key={link.label} {...link} icon={link.icon} />
-        ))}
+      <div className="relative rounded-lg h-full w-full p-4">
+        <Image
+          src="/brochure2.jpg"
+          alt="brochure"
+          fill
+          className="object-cover"
+        />
       </div>
     </div>
   );

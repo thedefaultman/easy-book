@@ -11,6 +11,9 @@ module.exports = {
       colors: {
         blue: "#0F62FE",
       },
+      backgroundImage: {
+        hero: "url(/bg-hero.png)",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

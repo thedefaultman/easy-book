@@ -22,7 +22,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ number, title, Icon }) => {
 const Reviews = () => {
   return (
     <section
-      className="flex flex-col gap-10 items-center justify-center mt-20"
+      className="flex flex-col gap-10 items-center justify-center mt-20 max-w-7xl px-6 sm:px-16 relative mx-auto"
       id="reviews"
     >
       <div className="relative mx-auto">
@@ -30,18 +30,14 @@ const Reviews = () => {
           OUR WORK SPEAKS FOR ITSELF
         </h1>
         <p className="text-center mt-5">
-          Our commitment to excellence shines through the numbers. With a 
-          rapidly growing user base, EasyBook has become a trusted companion 
-          for managing your healthcare journey.
+          Our commitment to excellence shines through the numbers. With a
+          rapidly growing user base, EasyBook has become a trusted companion for
+          managing your healthcare journey.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative mx-auto gap-10">
-        <ReviewCard 
-          number={"450"} 
-          title="Happy Users" 
-          Icon={GoSmiley} 
-        />
+        <ReviewCard number={"450"} title="Happy Users" Icon={GoSmiley} />
         <ReviewCard
           number={"600"}
           title="Appointments Booked"
@@ -52,11 +48,7 @@ const Reviews = () => {
           title="Registered Doctors"
           Icon={FaUserDoctor}
         />
-        <ReviewCard 
-          number={"11K"} 
-          title="Registered Users" 
-          Icon={GoPeople} 
-        />
+        <ReviewCard number={"11K"} title="Registered Users" Icon={GoPeople} />
       </div>
     </section>
   );
