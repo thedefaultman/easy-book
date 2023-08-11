@@ -38,7 +38,7 @@ const Doctors = () => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading || !user ? (
         <div className="flex justify-center items-center h-96">
           <div className="flex justify-center items-center relative mx-auto w-full h-full">
             <PulseLoader color="#0F62FE" />
