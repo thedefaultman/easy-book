@@ -49,7 +49,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="max-w-7xl flex items-center justify-between mx-auto py-8">
+    <nav className="max-w-7xl flex items-center justify-between mx-auto py-8 px-3">
       <div className="flex items-center mr-7">
         <h1 className="text-white font-bold text-3xl">EasyBook</h1>
       </div>
@@ -89,6 +89,7 @@ const Navbar = () => {
       <div className="flex md:hidden">
         <RxHamburgerMenu
           size={30}
+          color="white"
           onClick={() => setIsMenuOpen((prev) => !prev)}
         />
 
@@ -96,17 +97,17 @@ const Navbar = () => {
           <ul className="absolute top-16 right-0 bg-white shadow-md rounded-sm flex flex-col gap-y-2 p-2 z-50 w-1/2 text-center">
             <li onClick={() => setIsMenuOpen(false)}>
               <Link href="/">
-                <p className="text-black font-medium">Home</p>
+                <p className="text-blue font-medium">Home</p>
               </Link>
             </li>
             <li onClick={() => setIsMenuOpen(false)}>
               <Link href="/about">
-                <p className="text-black font-medium">About</p>
+                <p className="text-blue font-medium">About</p>
               </Link>
             </li>
             <li onClick={() => setIsMenuOpen(false)}>
               <Link href="/contact">
-                <p className="text-black font-medium">Contact</p>
+                <p className="text-blue font-medium">Contact</p>
               </Link>
             </li>
             {routes.map(({ label, className, onClick }) => (

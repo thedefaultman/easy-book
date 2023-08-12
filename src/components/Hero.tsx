@@ -13,9 +13,19 @@ const Hero = () => {
   const { open } = useAuthModal();
 
   return (
-    <div className="flex justify-between items-center px-6 sm:px-16 w-full h-full max-w-7xl pt-24 relative mx-auto">
-      <div>
-        <h1 className="text-7xl font-bold max-w-md text-white">
+    <div className="flex justify-center md:justify-between items-center px-6 sm:px-16 w-full h-full max-w-7xl pt-12 md:py-1 relative mx-auto gap-x-6">
+      <div className="md:hidden top-0 absolute h-[150px] w-[150px]">
+        <Image
+          src="/landing.svg"
+          height={400}
+          width={400}
+          className="object-cover image-pattern"
+          alt="image of a female doctor"
+        />
+      </div>
+
+      <div className="flex flex-col justify-center items-center text-center md:justify-start md:items-start md:text-start">
+        <h1 className="text-2xl md:text-5xl 2xl:text-7xl font-bold max-w-xl 2xl:max-w-md text-white">
           Connect with your Doctor easier than ever
         </h1>
         <p className="mt-5 max-w-lg text-sm font-medium text-white">
@@ -57,13 +67,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="">
+      <div className="hidden md:block">
         <Image
           src="/landing.svg"
-          width={400}
           height={400}
-          className="object-cover"
-          alt=""
+          width={400}
+          className="object-cover image-pattern"
+          alt="image of a female doctor"
         />
       </div>
     </div>
