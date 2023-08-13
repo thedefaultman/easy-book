@@ -36,9 +36,26 @@ const Appointments = () => {
     supabase,
   ]);
 
-  const handleEditAppointment = () => {
-    // Handle edit logic, e.g., open a modal for rescheduling or canceling
-    // Doing this after creating the booking logic
+  const handleEditAppointment = async (appointment: Appointment) => {
+    if (session?.user.user_metadata.user_role === "Patient") {
+      const { data, error } = await supabase
+        .from("appointment")
+        .update({ status: "Cancelled" })
+        .eq("appointment_id", appointment.appointment_id);
+
+      if (error) {
+        console.error("Error updating appointment:", error.message);
+      }
+    } else {
+      const { data, error } = await supabase
+        .from("appointment")
+        .update({ status: "Completed" })
+        .eq("appointment_id", appointment.appointment_id);
+
+      if (error) {
+        console.error("Error updating appointment:", error.message);
+      }
+    }
   };
 
   return (
@@ -103,10 +120,14 @@ const Appointments = () => {
                   <td className="px-6 py-4">{appointment.status}</td>
                   <td className="px-6 py-4 text-right">
                     <button
-                      onClick={() => handleEditAppointment()}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={() => handleEditAppointment(appointment)}
+                      className="font-medium text-blue hover:underline"
                     >
-                      Edit
+                      {session?.user.user_metadata.user_role === "Patient" ? (
+                        <span>Cancel Appointment</span>
+                      ) : (
+                        <span>Mark Complete</span>
+                      )}
                     </button>
                   </td>
                 </tr>

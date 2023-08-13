@@ -18,7 +18,10 @@ const ReviewModal = () => {
         .from("appointment")
         .select("time")
         .eq("doctor_id", doctor?.doctor_id)
-        .eq("date", date);
+        .eq("date", date)
+        .neq("status", "Cancelled");
+
+      console.log(bookedTimes);
 
       if (error) {
         console.error("Error fetching appointments:", error.message);
@@ -27,8 +30,8 @@ const ReviewModal = () => {
       if (!date) return [];
 
       const availableTimes = [
-        "9:00:00",
-        "9:30:00",
+        "09:00:00",
+        "09:30:00",
         "10:00:00",
         "10:30:00",
         "11:00:00",
