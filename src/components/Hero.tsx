@@ -13,7 +13,7 @@ const Hero = () => {
   const { open } = useAuthModal();
 
   return (
-    <div className="flex justify-center md:justify-between items-center px-6 sm:px-16 w-full h-full max-w-7xl pt-12 md:py-1 relative mx-auto gap-x-6">
+    <div className="flex justify-center md:justify-between items-center px-6 sm:px-16 max-w-7xl py-12 2xl:py-16 relative mx-auto gap-x-6">
       <div className="md:hidden top-0 absolute h-[150px] w-[150px]">
         <Image
           src="/landing.svg"
