@@ -12,11 +12,14 @@ const Appointments = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       setIsLoading(true);
+      const userType = session?.user.user_metadata.user_role;
+      const userId = userType === "Patient" ? "PHN" : "doctor_id";
+
       const { data, error } = await supabase
         .from("appointment")
         .select("*")
-        .eq("PHN", session?.user.user_metadata.user_id)
-        .order("date", { ascending: true });
+        .eq(userId, session?.user.user_metadata.user_id)
+        .order("created_at", { ascending: false });
 
       if (error) {
         console.error("Error fetching appointments:", error.message);
@@ -27,7 +30,11 @@ const Appointments = () => {
     };
 
     fetchAppointments();
-  }, [session?.user.user_metadata.user_id, supabase]);
+  }, [
+    session?.user.user_metadata.user_id,
+    session?.user.user_metadata.user_role,
+    supabase,
+  ]);
 
   const handleEditAppointment = () => {
     // Handle edit logic, e.g., open a modal for rescheduling or canceling
