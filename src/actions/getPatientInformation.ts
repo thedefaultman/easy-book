@@ -2,12 +2,13 @@ import { Patient } from "@/lib/types/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-const getPatientInformation = async (): Promise<Patient[]>=> {
+const getPatientInformation = async (id?: string): Promise<Patient[]>=> {
     const supabase = createServerComponentClient({
         cookies: cookies,
     })
 
     const { data : sessionData, error: sessionError } = await supabase.auth.getSession()
+    const ID = id ? id : sessionData?.session?.user.id
 
     if (sessionError) {
         console.log(sessionError.message)
@@ -16,7 +17,7 @@ const getPatientInformation = async (): Promise<Patient[]>=> {
     const { data: patientData, error: patientError } = await supabase
         .from('patient')
         .select('*')
-        .eq('user_id', sessionData?.session?.user.id)
+        .eq('user_id', ID)
 
     if (patientError) {
         console.log(patientError)
