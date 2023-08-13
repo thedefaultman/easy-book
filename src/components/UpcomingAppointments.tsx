@@ -20,7 +20,7 @@ const UpcomingAppointments: React.FC<Props> = ({ id }) => {
       const { data, error } = await supabase
         .from("appointment")
         .select("*")
-        .eq("doctor_id", id)
+        .or("doctor_id.eq." + id + ",PHN.eq." + id)
         .order("date", { ascending: true })
         .limit(5);
 

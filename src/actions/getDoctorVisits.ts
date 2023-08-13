@@ -12,6 +12,22 @@ const getDoctorVisits = async () => {
         console.log(sessionError.message)
     }
 
+    const { data: appointmentCount, error: appointmentError } = await supabase
+        .from("appointment")
+        .select("*")
+        .eq("PHN", sessionData?.session?.user.user_metadata.user_id)
+        .eq("status", "Completed")
+
+    if (appointmentError) {
+        console.log(appointmentError.message)
+    }
+
+    const { data: patient, error: patientError } = await supabase
+        .from("patient")
+        .update({ doctor_visits: appointmentCount?.length })
+        .eq("PHN", sessionData?.session?.user.user_metadata.user_id)
+
+
     const { data, error } = await supabase
         .from('patient')
         .select('doctor_visits')
