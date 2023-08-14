@@ -1,10 +1,12 @@
-import { Patient } from "@/lib/types/types";
+import { useViewRecordModal } from "@/hooks/useViewRecordModal";
+import { Patient, Record } from "@/lib/types/types";
 import { useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 
 const PatientHistory = () => {
   const [user, setUser] = useState<Patient | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { onOpen, setRecord } = useViewRecordModal();
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,6 +19,11 @@ const PatientHistory = () => {
     getPatient();
     setIsLoading(false);
   }, []);
+
+  const handleViewRecord = async (record: Record) => {
+    setRecord(record);
+    onOpen();
+  };
 
   return (
     <>
@@ -83,7 +90,14 @@ const PatientHistory = () => {
                     <span className="text-gray-500 text-sm">
                       {record.record_id}
                     </span>
-                    <button className="text-blue-600 text-sm">View</button>
+                    <button
+                      className="text-blue-600 text-sm"
+                      onClick={() => {
+                        handleViewRecord(record);
+                      }}
+                    >
+                      View
+                    </button>
                   </div>
                 ))}
 

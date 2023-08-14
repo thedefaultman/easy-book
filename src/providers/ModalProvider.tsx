@@ -7,6 +7,7 @@ import ReviewModal from "@/components/ReviewModal";
 import BookingModal from "@/components/BookingModal";
 import HistoryModal from "@/components/HistoryModal";
 import RecordModal from "@/components/RecordModal";
+import PatientRecordModal from "@/components/PatientRecordModal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,6 +25,7 @@ const ModalProvider = () => {
       <BookingModal />
       <HistoryModal />
       <RecordModal />
+      <PatientRecordModal />
     </>
   );
 };
