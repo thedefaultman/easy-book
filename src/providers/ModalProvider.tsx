@@ -6,6 +6,7 @@ import AuthModal from "@/components/AuthModal";
 import ReviewModal from "@/components/ReviewModal";
 import BookingModal from "@/components/BookingModal";
 import HistoryModal from "@/components/HistoryModal";
+import RecordModal from "@/components/RecordModal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,6 +23,7 @@ const ModalProvider = () => {
       <ReviewModal />
       <BookingModal />
       <HistoryModal />
+      <RecordModal />
     </>
   );
 };

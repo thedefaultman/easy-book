@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { Appointment } from "@/lib/types/types";
 import { PulseLoader } from "react-spinners";
+import { useRecordModal } from "@/hooks/useRecordModal";
 
 const Appointments = () => {
   const { supabaseClient: supabase, session } = useSessionContext();
-
+  const { onOpen, setAppointment } = useRecordModal();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,6 +57,11 @@ const Appointments = () => {
         console.error("Error updating appointment:", error.message);
       }
     }
+  };
+
+  const handleRecord = async (appointment: Appointment) => {
+    setAppointment(appointment);
+    onOpen();
   };
 
   return (
@@ -127,6 +133,16 @@ const Appointments = () => {
                         <span>Cancel Appointment</span>
                       ) : (
                         <span>Mark Complete</span>
+                      )}
+                    </button>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button
+                      onClick={() => handleRecord(appointment)}
+                      className="font-medium text-blue hover:underline"
+                    >
+                      {session?.user.user_metadata.user_role === "Doctor" && (
+                        <span>Create Record</span>
                       )}
                     </button>
                   </td>
